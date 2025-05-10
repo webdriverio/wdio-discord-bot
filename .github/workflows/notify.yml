@@ -1,0 +1,35 @@
+name: SO → Discord Notifier
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run SO notifier
+        env:
+          DISCORD_WEBHOOK_ID: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          DISCORD_WEBHOOK_TOKEN: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          TAG_TO_MONITOR:      ${{ secrets.TAG_TO_MONITOR }}
+          STACKEXCHANGE_KEY:   ${{ secrets.STACKEXCHANGE_KEY }}
+          GIT_KEY:          ${{ secrets.GIT_KEY }}
+          OWNER:               ${{ secrets.OWNER }}
+          REPO:                ${{ secrets.REPO }}
+          ISSUE_NUMBER:        ${{ secrets.ISSUE_NUMBER }}
+        run: npm run start
