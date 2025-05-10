@@ -1,6 +1,6 @@
-import fs from 'fs/promises';
-import { exec } from 'child_process';
-import path from 'path';
+import fs from 'node:fs/promises';
+import cp from 'node:child_process';
+import path from 'node:path';
 
 const DATA_FILE = path.resolve(__dirname, '../../data/sentIds.json');
 
@@ -20,7 +20,7 @@ export async function saveSentIds(ids: Set<number>) {
   await fs.writeFile(DATA_FILE, JSON.stringify(arr, null, 2));
 
   // Auto‑commit and push
-  return new Promise<void>((resolve, reject) => exec(
+  return new Promise<void>((resolve, reject) => cp.exec(
     `git add ${DATA_FILE} && git commit -m "chore: update sent question IDs" && git push`,
     (err, stdout, stderr) => {
       if (err) {
