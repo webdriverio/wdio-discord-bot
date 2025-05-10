@@ -1,9 +1,10 @@
-name: SO → Discord Notifier
+name: SO -> Discord Notifier
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
-  workflow_dispatch:
+    # Runs at 00:00 UTC and 12:00 UTC
+    - cron: '0 */12 * * *'
+  workflow_dispatch: # Allow manual runs
 
 jobs:
   notify:
@@ -11,8 +12,12 @@ jobs:
 
     steps:
 
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          # Persist credentials so git push works
+          persist-credentials: true
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -28,8 +33,4 @@ jobs:
           DISCORD_WEBHOOK_TOKEN: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           TAG_TO_MONITOR:      ${{ secrets.TAG_TO_MONITOR }}
           STACKEXCHANGE_KEY:   ${{ secrets.STACKEXCHANGE_KEY }}
-          GIT_KEY:          ${{ secrets.GIT_KEY }}
-          OWNER:               ${{ secrets.OWNER }}
-          REPO:                ${{ secrets.REPO }}
-          ISSUE_NUMBER:        ${{ secrets.ISSUE_NUMBER }}
         run: npm run start
