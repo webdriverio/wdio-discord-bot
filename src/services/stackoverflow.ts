@@ -17,7 +17,10 @@ export async function fetchLatestQuestions(): Promise<Question[]> {
     pagesize: "10",
     filter: "withbody",
   });
-  if (env.STACKEXCHANGE_KEY) params.append("key", env.STACKEXCHANGE_KEY);
+
+  if (env.STACKEXCHANGE_KEY) {
+    params.append("key", env.STACKEXCHANGE_KEY)
+  };
 
   const url = `https://api.stackexchange.com/2.3/questions?${params}`;
   const res = await fetch(url);
