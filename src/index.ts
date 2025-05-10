@@ -2,7 +2,7 @@ import { env } from './config/env';
 import { fetchLatestQuestions } from './services/stackoverflow';
 import { formatBody } from './utils/htmlFormatter';
 import { sendQuestion } from './services/notifier';
-import { loadSentIds, saveSentIds } from './services/git';
+import { loadSentIds, saveSentIds } from './services/persistence';
 
 (async () => {
   const sent = await loadSentIds();

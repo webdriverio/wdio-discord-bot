@@ -20,7 +20,7 @@ export async function saveSentIds(ids: Set<number>) {
   exec(
     `git add ${DATA_FILE} && git commit -m "chore: update sent question IDs" && git push`,
     (err, stdout, stderr) => {
-      if (err) console.error('Git commit failed:', stderr);
+      if (err) console.error('Git commit failed:', stderr, stdout);
       else console.log('Sent IDs file committed.');
     }
   );
