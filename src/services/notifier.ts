@@ -1,6 +1,7 @@
 import { WebhookClient, EmbedBuilder } from "discord.js";
-import { env } from "../config/env";
+
 import { Question } from "./stackoverflow";
+import { env } from "../config/env";
 
 const webhook = new WebhookClient({
   id: env.DISCORD_WEBHOOK_ID,
