@@ -1,7 +1,7 @@
-import { fetchLatestQuestions } from './services/stackoverflow';
-import { formatBody } from './utils/htmlFormatter';
-import { sendQuestion } from './services/notifier';
-import { loadSentIds, saveSentIds } from './services/persistence';
+import { fetchLatestQuestions } from './services/stackoverflow.js';
+import { formatBody } from './utils/htmlFormatter.js';
+import { sendQuestion } from './services/notifier.js';
+import { loadSentIds, saveSentIds } from './services/persistence.js';
 
 const sent = await loadSentIds();
 const questions = await fetchLatestQuestions();

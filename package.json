@@ -5,6 +5,7 @@
   "description": "",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "npm run build && node dist/index.js",
