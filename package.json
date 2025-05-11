@@ -8,7 +8,8 @@
   "type": "module",
   "scripts": {
     "start": "tsx src/index.ts",
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@octokit/rest": "^21.1.1",
@@ -22,6 +23,8 @@
     "@types/dotenv": "^6.1.1",
     "@types/node": "^22.15.17",
     "@types/ws": "^8.18.1",
+    "@wdio/eslint": "^0.1.1",
+    "eslint": "^9.26.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   }
